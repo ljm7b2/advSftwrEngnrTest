@@ -1,0 +1,4 @@
+test 1 in a text file
+:w
+
+
