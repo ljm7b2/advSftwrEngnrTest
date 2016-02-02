@@ -59,7 +59,7 @@ public class Weather_Current_Location extends Activity {
 
     public void getWeather(View v){
         Context context = getApplicationContext();
-        CharSequence text = "The Current user is: {" + userName + "}";
+        CharSequence text = "The Current user is: { " + userName + " }";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
