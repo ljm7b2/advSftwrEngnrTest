@@ -33,6 +33,12 @@ public class Weather_Current_Location extends Activity {
         ForecastApi.create("d24e1b631c89923f3095f56a4f77c273");
         TextView temp =(TextView)findViewById(R.id.textView5);
         temp.setVisibility(View.INVISIBLE);
+
+        TextView temp2 =(TextView)findViewById(R.id.textView6);
+        temp2.setVisibility(View.INVISIBLE);
+
+        TextView temp3 =(TextView)findViewById(R.id.textView7);
+        temp3.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -79,6 +85,14 @@ public class Weather_Current_Location extends Activity {
                 TextView temp =(TextView)findViewById(R.id.textView5);
                 temp.setText( "Temp: " + weatherResponse.getCurrently().getTemperature() + "F");
                 temp.setVisibility(View.VISIBLE);
+//
+//                TextView temp2 =(TextView)findViewById(R.id.textView6);
+//                temp2.setText("Sunset: " + weatherResponse.getCurrently().getSunsetTime() + "PM");
+//                temp2.setVisibility(View.VISIBLE);
+//
+//                TextView temp3 =(TextView)findViewById(R.id.textView7);
+//                temp3.setText("Sunrise: " + weatherResponse.getCurrently().getSunriseTime());
+//                temp3.setVisibility(View.VISIBLE);
             }
 
             @Override
