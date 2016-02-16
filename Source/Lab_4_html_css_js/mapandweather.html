@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <script src="jquery.js"></script>
+    <script src="jquery.simpleWeather.js"></script>
+    <script src="app.js"></script>
+
+
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="floating-panel">
+    <b>Start: </b>
+    <input type="email" id="start" placeholder="Start" autofocus>
+
+    <b>End: </b>
+    <input type="email" id="end" placeholder="End" autofocus>
+
+</div>
+<div id="map"></div>
+<div id="masterWeather">
+    <div id="weather" class="weather"></div>
+
+    <div id="weather2" class="weather"></div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVs4M9lquz3ABKVTupaJdBdYDfJq9GNZA&signed_in=true&callback=initMap"
+        async defer></script>
+</body>
+</html>
