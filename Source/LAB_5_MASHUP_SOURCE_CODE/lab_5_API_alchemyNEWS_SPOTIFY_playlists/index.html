@@ -1,0 +1,111 @@
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="fuzzyset.js"></script>
+<script type="text/javascript" src="wordcache.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" />
+<style type="text/css">
+
+	.jumbotron {
+		background-color: #333;
+		color: #fff;
+	}
+
+	.jumbotron p {
+		color: #aaa;
+	}
+
+	.jumbotron a {
+		color: #fff;
+	}
+
+    dialog {
+        width: 1000px;
+        background:#e8e8e8;
+        border: 1px solid #dadada;
+        font-family:sans-serif;
+        padding: 5px 10px 20px 20px;
+    }
+
+</style>
+</head>
+<body onload="startApp()">
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h2>Alchemy News API + Spotify WebAPI Playlist Creation MASHUP</h2>
+			<p>
+				Luke McDuff
+			</p>
+		</div>
+	</div>
+
+
+	<div class="container">
+
+
+		<!-- Example row of columns -->
+		<div class="row">
+
+            <div
+                    class="fb-like"
+                    data-share="true"
+                    data-width="450"
+                    data-show-faces="true">
+            </div>
+
+			<div class="col-md-6">
+				<h2>Latest Headlines or just write some text</h2>
+
+				<div class="form-group">
+
+                    <div class="col-lg-15">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for news about..." id="newsSearch">
+						  <span class="input-group-btn">
+							<button class="btn btn-default" type="button" id="getNews">Go!</button>
+						  </span>
+                        </div>
+                    </div>
+
+					<textarea class="form-control" id="alltext" rows="5" maxlength="500"></textarea>
+				</div>
+				<p>
+					<button class="btn btn-lg btn-primary btn-success" id="start">Create a Spotify playlist!</button>
+				</p>
+            <a href="https://www.spotify.com/us/tour/">Must have Spotify to build playlist from suggested tracks, Click to Download!</a>
+				<div id="status"></div>
+			</div>
+			<div class="col-md-6">
+				<h2>Corresponding track names</h2>
+				<div id="debug"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '981065238654456',
+            xfbml      : true,
+            version    : 'v2.5'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+</html>
