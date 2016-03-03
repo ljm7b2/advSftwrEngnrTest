@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CliniConnect</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+</head>
+<body>
+	<h3>Welcome To CliniConnect!</h3>
+	<a href="GetClinicInfo">GetClinicInfo</a>
+	<a href="LevelMonitor?BS=90&BP=120/80">LevelMonitor</a>
+	<a href="LoginAuthentication">LoginAuthentication</a>
+	
+	<form id="form1" name="loginForm" method="post" action="LoginAuthentication">
+	    Email: <input type="text" name="username"/> <br/>
+	    Password: <input type="password" name="password"/> <br/>
+	    <input type="submit" value="Login" onClick="resetForm()"/>
+	</form>
+	
+	<script>
+	
+		$(document).ready(function(){
+			$("#form1").trigger("reset");
+		});
+		function resetForm() {
+   			 document.getElementByName("loginForm").reset();
+
+		}
+	</script>
+</body>
+</html>
