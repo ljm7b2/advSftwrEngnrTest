@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CliniConnect Delete Administrator</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="icon" href="resource/favicon.png">
+  
+</head>
+<body>
+
+	<div class="container">
+ 	  <div class="panel panel-default">
+  		<div class="panel-body"><h1>CliniConnect Delete Administrator</h1></div>
+	  </div>
+
+	    <input type="text" class="form-control" id="delUsr" placeholder="Administrator to Delete"></input>
+	    <div class="checkbox">
+		  <label><input type="checkbox" value="confirmed" id="delCheck">I understand I am deleting this user.</label>
+		</div>
+	
+	    <button class="btn btn-warning" id="delAdmn" onClick="deleteAdmin()" style="margin-top:10px;"> Delete Administrator</button></br>
+	    <div id="error"></div>
+
+   </div>
+   
+<script>
+
+$(document).ready(function(){
+	
+	$( "#delAdmn" ).click(function( event ) {
+		  event.preventDefault();
+		});
+});
+
+function deleteAdmin(){
+	if(document.getElementById("delUsr").value == "" || document.getElementById("delCheck").checked == false){
+		$("#error").empty();
+		$("#error").append("<p><b>Please complete form.</b></p>");
+		return;
+	}
+	$.post("DeleteAdministrator", 
+			{"username":document.getElementById("delUsr").value
+		     },
+		     function(data){
+		    	 //alert(data); 
+		    	 console.log(data);
+		    	 if(data.deleteUser == "success"){
+		    		 alert("Administrator has been deleted.");
+		    		 window.location.reload();
+		    	 }
+		    	 else{
+		    		 $("#error").empty();
+		    		 $("#error").append("<p><b>Adminstrator not found.</b></p>");
+		    		 document.getElementById("delUsr").value = "";
+		    		 document.getElementById("delCheck").checked = false;
+		    		 
+		    	 }
+		    	 }
+		     );
+	
+}
+
+</script>
+
+</body>
+</html>

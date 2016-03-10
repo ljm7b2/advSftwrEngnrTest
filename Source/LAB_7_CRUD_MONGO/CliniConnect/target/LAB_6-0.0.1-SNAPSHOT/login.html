@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CinciConnect Home</title>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="panel panel-default">
+  		<div class="panel-body"><h1>CliniConnect Administrator Login</h1></div>
+	</div>
+  <form role="form">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+    </div>
+    <button type="submit" class="btn btn-success" onClick="verifyLogin()" id="logBtn">Login</button>
+    <button class="btn btn-info" onClick="registerNow()" id="regBtn">Register</button>
+    <div id="error"></div>
+  </form>
+</div>
+
+<script>
+$(document).ready(function(){
+	
+	$( "#logBtn" ).click(function( event ) {
+		  event.preventDefault();
+		});
+	$( "#regBtn" ).click(function( event ) {
+		  event.preventDefault();
+		});
+
+});
+
+function verifyLogin(){
+	
+	if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" ){
+		$("#error").append("<p><b>Please fill out form.</b></p>");
+		return;
+	}
+	
+	$.post("LoginAuthentication", 
+			{"username":document.getElementById("email").value, 
+		     "password":document.getElementById("pwd").value 
+		     },
+		     function(data){
+		    	 //alert(data); 
+		    	 console.log(data);
+		    	 if(data.login == "success"){
+		    		 window.location.replace("index.html");
+		    	 }
+		    	 else{
+		    		 $("#error").empty();
+		    		 $("#error").append("<p><b>Wrong username or password.</b></p>");
+		    		 document.getElementById("email").value = "";
+		    		 document.getElementById("pwd").value = "";
+		    		 
+		    	 }
+		    	 }
+		     );
+
+}
+
+function registerNow(){
+	window.location("register.html");
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

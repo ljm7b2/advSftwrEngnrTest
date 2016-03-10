@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CliniConnect Push Notification Service</title>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script type="text/javascript" src="jquery.timepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="jquery.timepicker.css" />
+  
+  <style>
+  
+  #date, #apBtn, #datepicker2{
+  	margin-top:20px;
+  }
+  
+  </style>
+
+
+</head>
+<body>
+<!-- 	<h1><b>Send A Push Notification</b></h1>
+	<form id="form2" name="pushForm" method="post" action="SendMessage">
+	    Email: <input type="text" name="username"/> <br/>
+	    Message: <input type="text" name="message"/> <br/>
+	    <input type="submit" value="Send Notification" onClick="resetForm1()"/>
+	</form> -->
+	
+	
+	<div class="container">
+	  <div class="panel panel-default">
+	  		<div class="panel-body"><h1>CliniConnect Send Appointment Notification</h1></div>
+		</div>
+		<div class="container">
+		  <div class="dropdown" id="header">
+		    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Select Patient
+		    <span class="caret"></span></button>
+		    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" id="patients">
+<!-- 		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
+		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+		      <li role="presentation" class="divider"></li>
+		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>  -->   
+		    </ul>
+		  </div>
+		</div>	
+			<div class="form-group col-xs-3" id="date">
+			  <input type="text" class="form-control" id="timepicker2" placeholder="Select Time">
+		      <input type="text" class="form-control" id="datepicker2" placeholder="Select Date">
+		      <div id="apBtn">
+		      	<button type="submit" class="btn btn-success" onClick="sendAppointment()" id="aptBtn">Send Appointment Reminder</button>
+		      </div>
+		      <div id="error"></div>
+		    </div>
+
+	</div>
+	
+
+	
+	<script>
+	
+		$(document).ready(function(){
+			//$("#form2").trigger("reset");
+			
+			$( "#aptBtn" ).click(function( event ) {
+				  event.preventDefault();
+				});
+			
+			getNames();
+			
+			
+
+			
+			document.getElementById("datepicker2").value = "";
+			$( "#datepicker2" ).datepicker();
+			$("#timepicker2").timepicker();
+			
+		
+		});
+/* 		function resetForm1() {
+   			 document.getElementByName("pushForm").reset();
+   			 
+		} */
+		
+		function getNames(){
+			$.post("GetPatients", 
+				     function(data){
+				    	 //alert(data); 
+				    	 console.log(data);
+				    	 if(data.found == "success"){
+				    		 for(var i = 0; i < data.users.length; i++){
+				    			 $("#patients").append('<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' +
+				    					 data.users[i].username 
+				    			 		 + '</a></li> ');
+				    			 $("#patients").append('<li role="presentation" class="divider"></li>');
+				    		 }
+				    		 setDrops();
+				    	 }
+				    	 else{
+								alert("Database is down. Please refresh, or try again later.");					    		 
+				    	 }
+				       }
+				     );
+		}
+		
+		function setDrops(){
+			$(".dropdown-menu li a").click(function(){    
+				$("#menu1:first-child").text($(this).text());
+				$("#menu1:first-child").val($(this).text());
+				$("#menu1:first-child").append('<span class="caret" style="margin-left:10px;"></span>');
+				username = $(this).text();
+		     });
+		}
+		
+		function sendAppointment(){
+			$("#error").empty();
+			if(typeof username == "undefined" || document.getElementById("datepicker2").value == "" 
+					|| document.getElementById("timepicker2").value == ""){
+				$("#error").append("<p><b>Please complete form.</b></p>")
+				return;
+			}
+			
+			$.post("SendMessage", 
+					{"username":username, 
+					 "message": document.getElementById("datepicker2").value,
+					 "time": document.getElementById("timepicker2").value
+			     	},
+				     function(data){
+				    	 //alert(data); 
+				    	 console.log(data);
+				    	 if(data.login == "success"){
+								alert("Appointment has been sent to: " + username)
+				    	 }
+				    	 else{
+								alert("Database is down. Please refresh, or try again later.");					    		 
+				    	 }
+				       }
+				     );
+			
+		}
+		
+		
+	</script>
+
+</body>
+</html>

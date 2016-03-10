@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>CliniConnect Register</title>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="icon" href="resource/favicon.png">
+  
+  
+</head>
+<body>
+
+	<div class="container">
+	  <div class="panel panel-default">
+	  		<div class="panel-body"><h1>CliniConnect Patient Registration</h1></div>
+		</div>
+	  <form role="form">
+	    <div class="form-group">
+	      <label for="email">Email:</label>
+	      <input type="email" class="form-control" id="email" placeholder="Enter email">
+	    </div>
+	    <div class="form-group">
+	      <label for="pwd">Password:</label>
+	      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+	    </div>
+	    <div class="form-group">
+	      <label for="pwd2">Re-Enter Password:</label>
+	      <input type="password" class="form-control" id="pwd2" placeholder="Re-Enter password">
+	    </div>
+	    <button type="submit" class="btn btn-success" onClick="registerUser()" id="regUser">Register</button>
+	  </form>
+	  <div style="float:left;" id="passwordError"></div>
+	</div>
+	
+	
+<script>
+	$(document).ready(function(){
+		
+		$( "#regUser" ).click(function( event ) {
+			  event.preventDefault();
+		});
+	
+	});
+	
+	function registerUser(){
+		if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" ){
+			$("#passwordError").append("<p><b>Please fill out form.</b></p>");
+			return;
+		}
+		
+		if(document.getElementById("pwd").value != document.getElementById("pwd2").value){
+			$("#passwordError").append("<p><b>Passwords do not match.</b></p>")
+			document.getElementById("pwd").value = "";
+			document.getElementById("pwd2").value = "";
+		}
+		else{
+			sendUserData();
+		}
+	}
+	
+	function sendUserData(){
+		$.post("RegisterUser", 
+				{"username":document.getElementById("email").value, 
+			     "password":document.getElementById("pwd").value 
+			     },
+			     function(data){
+			    	 //alert(data); 
+			    	 console.log(data);
+			    	 if(data.registration == "success"){
+			    		 window.location.replace("login.html");
+			    	 }
+			    	 else{
+			    		 alert("Error registering user Try again later.")
+			    		 window.location.replace("register.html");
+			    	 }
+			    	 }
+			     );
+		
+	}
+	
+	
+</script>
+
+</body>
+</html>
