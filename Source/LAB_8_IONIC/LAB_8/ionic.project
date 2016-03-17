@@ -1,0 +1,10 @@
+{
+  "name": "LAB_8",
+  "app_id": "",
+    "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://ec2-52-91-251-221.compute-1.amazonaws.com:8080/CliniConnect/GetClinicInfo"
+    }
+  ]
+}
