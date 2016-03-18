@@ -12,6 +12,12 @@ angular.module('app.controllers', [])
     }, function(error){
     //there was an error fetching from the server
     });
+    
+    var c = this;
+    c.getClinicInfo = function(){
+        var ref = cordova.InAppBrowser.open('http://www.mayoclinic.org/', '_blank', 'location=yes');
+
+    }
 
 })
    
