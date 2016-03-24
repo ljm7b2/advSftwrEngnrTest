@@ -1,0 +1,12 @@
+<ion-view title="Clinic Info" ng-controller="clinicInfoCtrl as c">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <div>
+            <p><strong>Name: </strong>{{clinicName}}</p>
+            <p><strong>Address: </strong>{{clinicAddress}}</p>
+            <p><strong>Phone: </strong>{{clinicPhone}}</p>
+            <p><strong>Email: </strong>{{clinicEmail}}</p>
+            <p><strong>Hours: </strong>{{clinicHours}}</p>
+        </div>
+        <button id="getClinicInfo" style="font-weight:bold;" class="button button-calm  button-block icon ion-android-share" ng-click="c.getClinicInfo()">Get More Clinic Info</button>
+    </ion-content>
+</ion-view>

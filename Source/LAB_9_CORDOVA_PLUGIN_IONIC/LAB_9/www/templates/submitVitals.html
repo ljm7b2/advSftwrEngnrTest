@@ -1,0 +1,16 @@
+<ion-view title="Submit Vitals" ng-controller="submitVitalsCtrl as v">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <form class="list" ng-submit="sendBP(data)">
+            <label class="item item-input" name="bloodPressure">
+                <span class="input-label">Blood Pressure</span>
+                <input type="text" placeholder="120/80" ng-model="v.BP">
+            </label>
+            <label class="item item-input" name="bloddSugar">
+                <span class="input-label">Blood Sugar</span>
+                <input type="text" placeholder="90" ng-model="v.BS">
+            </label>
+        </form>
+        <button id="submitVitals-button1" style="font-weight:bold;" class="button button-calm  button-block icon ion-android-share" ng-click="v.submitVitals()">Submit</button>
+        <p>Status: {{status}}</p>
+    </ion-content>
+</ion-view>
