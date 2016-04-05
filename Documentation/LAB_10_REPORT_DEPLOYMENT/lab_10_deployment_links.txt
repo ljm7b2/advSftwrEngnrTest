@@ -1,12 +1,20 @@
 LAB 10 – Deployment
 Luke McDuff
+
 The following Labs have been deployed:
+
 Lab 4 – REST – Map and Weather
 http://ec2-52-91-251-221.compute-1.amazonaws.com/MapAndWeather/
+
+
 Lab 5 – Mashup - News Inspired Spotify Playlists
 http://ec2-52-91-251-221.compute-1.amazonaws.com/Mashup/
+
+
 Lab 7 – CRUD – Mongo
 http://ec2-52-91-251-221.compute-1.amazonaws.com:8080/CliniConnect/
+
+
 Lab 6, 8, 9 – Ionic Hybrid app with REST Services
 http://ec2-52-91-251-221.compute-1.amazonaws.com/LabIonic
 
